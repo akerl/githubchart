@@ -1,19 +1,14 @@
-require 'curb'
-require 'json'
-require 'date'
-require 'gruff'
+#!/usr/bin/env ruby
 
-User = 'akerl'
-URL = "https://github.com/users/#{User}/contributions_calendar_data"
-dates, scores = JSON.parse(Curl::Easy.perform(URL).body_str).transpose
+require 'github_stats'
+require 'matrix'
 
-def pad_data(count, index, value, *arrays)
-    count.times { arrays.each {|a| a.insert(index, value) } }
-end
+Colors = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823']
 
-pad_data(Date.parse(dates.first).wday, 0, nil, dates, scores)
-pad_data(8 - Date.parse(dates.last).wday, -1, nil, dates, scores)
+data = Github_Stats.new(ARGV.first).data
 
-p dates
-p scores
+data.first.date.wday.times { data.unshift Github_Stats::Datapoint.new(data.first.date.prev_day, -1) }
+(6 - data.last.date.wday).times { data << Github_Stats::Datapoint.new(data.last.date.next, -1) }
+
+Grid = Matrix[*data.each_slice(7).to_a.transpose]
 
