@@ -4,6 +4,12 @@ require 'github_stats'
 require 'matrix'
 require 'rasem'
 
+if ARGV.empty?
+    puts 'Please provide the target location for the SVG'
+    exit 1
+end
+SVG_Path = ARGV.shift
+
 Colors = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823']
 
 stats = Github_Stats.new(ARGV.first)
@@ -23,7 +29,7 @@ end
 
 chart.close
 
-File.open('test.svg', 'w') do |file|
+File.open(SVG_Path, 'w') do |file|
   file << chart.output
 end
 
