@@ -20,11 +20,11 @@ data.first.date.wday.times { data.unshift Github_Stats::Datapoint.new(data.first
 
 Grid = Matrix[*data.each_slice(7).to_a.transpose]
 
-chart = Rasem::SVGImage.new(20 * Grid.column_count, 20 * Grid.row_count)
+chart = Rasem::SVGImage.new(13 * Grid.column_count, 13 * Grid.row_count)
 
 Grid.each_with_index do |point, y, x|
     next if point.score == -1
-    chart.rectangle (x*20)+1, (y*20)+1, 18, 18, :fill=>Colors[stats.quartile(point.score, github=true)]
+    chart.rectangle (x*13)+2, (y*13)+2, 11, 11, :fill=>Colors[stats.quartile(point.score, github=true)]
 end
 
 chart.close
