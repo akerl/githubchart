@@ -24,7 +24,7 @@ chart = Rasem::SVGImage.new(20 * Grid.column_count, 20 * Grid.row_count)
 
 Grid.each_with_index do |point, y, x|
     next if point.score == -1
-    chart.rectangle (x*20)+1, (y*20)+1, 18, 18, :fill=>Colors[stats.quartile(point.score)]
+    chart.rectangle (x*20)+1, (y*20)+1, 18, 18, :fill=>Colors[stats.quartile(point.score, github=true)]
 end
 
 chart.close
