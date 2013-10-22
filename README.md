@@ -9,7 +9,7 @@ Generates an SVG of your Github contributions:
 
 ## Usage
 
-Run `github_chart path/to/svg` to generate an SVG. To override the default username (pulled from your local shell or .gitconfig), use `github_chart path/to/svg username`
+Run `github_chart path/to/svg` to generate an SVG. To override the default username (pulled from your local shell or .gitconfig), use `github_chart -u username path/to/svg`
 
 ## Installation
 
