@@ -1,35 +1,27 @@
 #!/usr/bin/env ruby
 
-require 'github_stats'
-require 'matrix'
-require 'rasem'
+require 'github_chart'
+require 'optparse'
 
-if ARGV.empty?
+options = {}
+OptionParser.new do |opts|
+    opts.banner = "Usage: github_chart (-u username) (-t type) path/for/new/image.svg\n"
+    opts.banner << 'Supported types: ' + Github_Chart.supported.join(' ')
+    opts.on('-uMANDATORY', '--user=MANDATORY') { |user| options[:user] = user }
+    opts.on('-tMANDATORY', '--type=MANDATORY') do |type|
+        abort "That type is not supported" unless Github_Chart.supports? type
+        options[:type] = type.to_sym
+    end
+end.parse!
+
+SVG_Path = ARGV.shift
+
+if SVG_Path.nil?
     puts 'Please provide the target location for the SVG'
     exit 1
 end
-SVG_Path = ARGV.shift
 
-Colors = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823']
+Chart = Github_Chart.new(options[:user]).svg
 
-stats = Github_Stats.new(ARGV.first)
-data = stats.data
-
-data.first.date.wday.times { data.unshift Github_Stats::Datapoint.new(data.first.date.prev_day, -1) }
-(6 - data.last.date.wday).times { data << Github_Stats::Datapoint.new(data.last.date.next, -1) }
-
-Grid = Matrix[*data.each_slice(7).to_a.transpose]
-
-chart = Rasem::SVGImage.new(13 * Grid.column_count, 13 * Grid.row_count)
-
-Grid.each_with_index do |point, y, x|
-    next if point.score == -1
-    chart.rectangle (x*13)+2, (y*13)+2, 11, 11, :fill=>Colors[stats.quartile(point.score, github=true)]
-end
-
-chart.close
-
-File.open(SVG_Path, 'w') do |file|
-  file << chart.output
-end
+File.open(SVG_Path, 'w') { |file| file << Chart }
 
