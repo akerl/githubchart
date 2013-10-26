@@ -5,7 +5,7 @@ require 'github_stats'
 require 'matrix'
 
 module Github_Chart
-    Version = '0.2.0'
+    Version = '0.2.1'
     class << self
         ##
         # Add .new() helper for creating a new Chart object
@@ -85,12 +85,31 @@ module Github_Chart
         def svg
             raise(NotImplementedError, 'Install rasem for SVG support') unless Github_Chart.supports? :svg
             grid = matrix
-            chart = Rasem::SVGImage.new(13 * grid.column_size, 13 * grid.row_size)
+            chart = Rasem::SVGImage.new(13 * grid.column_size + 13, 13 * grid.row_size)
             grid.to_a.each_with_index do |row, y|
                 row.each_with_index do |point, x|
                     next if point.score == -1
-                    chart.rectangle((x*13)+2, (y*13)+2, 11, 11, :fill=>Colors[@stats.quartile(point.score)])
+                    chart.rectangle((x*13)+14, (y*13)+1, 11, 11, :fill=>Colors[@stats.quartile(point.score)])
                 end
+            end
+            data.first(7).each do |point|
+                index = point.date.wday
+                letter = point.date.strftime('%a')[0]
+                style = {
+                    :fill => '#ccc',
+                    :'text-anchor' => 'middle',
+                    :'text-align' => 'center',
+                    :font => '9px Helvetica, arial, freesans, clean, sans-serif',
+                    :'white-space' => 'nowrap',
+                    :display => 'display',
+                }
+                style[:display] = 'none' unless [1, 3, 5].include? index
+                chart.text(
+                    4,
+                    13 * index + 10,
+                    letter,
+                    style
+                )
             end
             chart.close
             chart.output
