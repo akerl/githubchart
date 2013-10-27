@@ -5,7 +5,7 @@ require 'github_stats'
 require 'matrix'
 
 module Github_Chart
-    Version = '0.2.1'
+    Version = '0.2.2'
     class << self
         ##
         # Add .new() helper for creating a new Chart object
