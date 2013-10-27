@@ -85,11 +85,11 @@ module Github_Chart
         def svg
             raise(NotImplementedError, 'Install rasem for SVG support') unless Github_Chart.supports? :svg
             grid = matrix
-            chart = Rasem::SVGImage.new(13 * grid.column_size + 13, 13 * grid.row_size)
+            chart = Rasem::SVGImage.new(13 * grid.column_size + 13, 13 * grid.row_size + 13)
             grid.to_a.each_with_index do |row, y|
                 row.each_with_index do |point, x|
                     next if point.score == -1
-                    chart.rectangle((x*13)+14, (y*13)+1, 11, 11, :fill=>Colors[@stats.quartile(point.score)])
+                    chart.rectangle((x*13)+14, (y*13)+14, 11, 11, :fill=>Colors[@stats.quartile(point.score)])
                 end
             end
             data.first(7).each do |point|
@@ -106,9 +106,36 @@ module Github_Chart
                 style[:display] = 'none' unless [1, 3, 5].include? index
                 chart.text(
                     4,
-                    13 * index + 10,
+                    13 * index + 23,
                     letter,
-                    style
+                    style,
+                )
+            end
+            month_style = {
+                :fill => '#aaa',
+                :'text-align' => 'center',
+                :font => '10px Helvetica, arial, freesans, clean, sans-serif',
+                :'white-space' => 'nowrap',
+                :display => 'block',
+            }
+            month_labels = data.group_by do |x|
+                x.date.strftime('%Y%U')
+            end.map do |k, v| 
+                v.first.date.strftime('%b')
+            end.reduce([]) do |acc, x|
+                acc << [x, 0] if acc.last.nil?
+                acc << [x, acc.last[1]] if acc.last[0] != x 
+                acc.last[1]+=1
+                acc
+            end
+            month_labels.each_index { |i| month_labels[-1 - i][1] = (month_labels[-2 - i] || [0, 0])[1] }
+            month_labels.each do |month, offset|
+                next if offset == 0
+                chart.text(
+                    13 * offset + 14,
+                    9,
+                    month,
+                    month_style,
                 )
             end
             chart.close
