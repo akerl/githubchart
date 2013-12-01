@@ -1,0 +1,14 @@
+language: ruby
+cache: bundler
+rvm:
+- ruby-head
+- 2.0.0
+- 1.9.3
+notifications:
+  email: false
+  irc:
+    channels:
+      - ircs://irc.oftc.net:6697#akerl
+    channel_key: sekrit
+    template:
+      - '%{repository}/%{branch}/%{build_number}: %{message} -- %{build_url}'
