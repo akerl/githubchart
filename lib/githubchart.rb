@@ -1,6 +1,5 @@
 require 'githubstats'
 require 'matrix'
-require 'githubchart/svg'
 
 ##
 # Graphing tool for creating Github-style contribution charts
@@ -36,7 +35,6 @@ module GithubChart
     def add_support(type)
       @supported ||= []
       @supported << type.to_sym
-      p @supported
     end
   end
 
@@ -58,9 +56,9 @@ module GithubChart
     # Uses colors rather than default, if provided
 
     def initialize(params = {})
-      params = { username: params } if params.is_a? String
+      params = { username: params } unless params.is_a? Hash
       @stats = GithubStats.new(params['username'])
-      @colors = params['colors'] || GithubChart::Colors
+      @colors = params['colors'] || GithubChart::COLORS
     end
 
     private
@@ -93,3 +91,5 @@ class ::Integer
     end
   end
 end
+
+require 'githubchart/svg'

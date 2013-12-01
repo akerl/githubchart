@@ -15,14 +15,84 @@ module GithubChart
   class Chart
     def svg
       grid = matrix
-      chart = Rasem::SVGImage.new 13 * grid.column_size, 13 * grid.row_size
-      grid.each_with_index do |point, row, col|
-        next if point.score == -1
-        chart.rectangle((x * 13) + 2, (y * 13) + 2, 11, 11,
-                        fill: @colors[@stats.quartile(point.score)])
-      end
+      chart = Rasem::SVGImage.new(13 * grid.column_size + 13,
+                                  13 * grid.row_size + 13)
+      svg_add_points grid, chart
+      svg_add_weekdays grid, chart
+      svg_add_months grid, chart
       chart.close
       chart.output
+    end
+
+    private
+
+    # rubocop:disable SymbolName
+
+    ##
+    # Define style for weekday labels
+
+    SVG_WEEKDAY_STYLE = {
+      :fill => '#ccc',
+      :'text-anchor' => 'middle',
+      :'text-align' => 'center',
+      :font => '9px Helvetica, arial, freesans, clean, sans-serif',
+      :'white-space' => 'nowrap',
+      :display => 'display',
+    }
+
+    ##
+    # Define Style for month labels
+
+    SVG_MONTH_STYLE = {
+      :fill => '#aaa',
+      :'text-align' => 'center',
+      :font => '10px Helvetica, arial, freesans, clean, sans-serif',
+      :'white-space' => 'nowrap',
+      :display => 'block',
+    }
+
+    # rubocop:enable SymbolName
+
+    def svg_add_points(grid, chart)
+      grid.each_with_index do |point, y, x|
+        next if point.score == -1
+        chart.rectangle(
+          (x * 13) + 14, (y * 13) + 14, 11, 11,
+          fill: @colors[@stats.quartile(point.score)]
+        )
+      end
+    end
+
+    def svg_add_weekdays(grid, chart)
+      grid.column(0).each do |point|
+        index = point.date.wday
+        letter = point.date.strftime('%a')[0]
+        style = SVG_WEEKDAY_STYLE.clone
+        style[:display] = 'none' unless [1, 3, 5].include? index
+        chart.text(4, 13 * index + 23, letter, style)
+      end
+    end
+
+    def svg_get_month_offsets(grid) # rubocop:disable MethodLength
+      offsets = grid.group_by { |x| x.date.strftime('%Y%U') }
+      offsets = offsets.map { |k, v| v.first.date.strftime('%b') }
+      offsets = offsets.reduce([]) do |acc, x|
+        acc << [x, 0] if acc.last.nil?
+        acc << [x, acc.last[1]] if acc.last[0] != x
+        acc.last[1] += 1
+        acc
+      end
+      offsets.each_index do |i|
+        offsets[-1 - i][1] = (offsets[-2 - i] || [0, 0])[1]
+      end
+      offsets
+    end
+
+    def svg_add_months(grid, chart)
+      svg_get_month_offsets(grid).each do |month, offset|
+        next if offset == 0
+        chart.text(13 * offset + 14, 9, month, SVG_MONTH_STYLE)
+      end
     end
   end
 end
