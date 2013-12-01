@@ -73,19 +73,14 @@ module GithubChart
       end
     end
 
-    def svg_get_month_offsets # rubocop:disable MethodLength
-      offsets = @stats.raw.group_by { |x| x.date.strftime('%Y%U') }
-      offsets = offsets.map { |k, v| v.first.date.strftime('%b') }
-      offsets = offsets.reduce([]) do |acc, x|
-        acc << [x, 0] if acc.last.nil?
-        acc << [x, acc.last[1]] if acc.last[0] != x
-        acc.last[1] += 1
-        acc
+    def svg_get_month_offsets
+      list = @stats.raw.group_by { |x| x.date.strftime('%Y%U').split('-') }
+      acc = 0
+      list = list.map { |k, v| v.first.date.strftime('%b') }
+      list.chunk { |x| x }.map do |month, offset|
+        acc += offset.size
+        [month, acc - offset.size]
       end
-      offsets.each_index do |i|
-        offsets[-1 - i][1] = (offsets[-2 - i] || [0, 0])[1]
-      end
-      offsets
     end
 
     def svg_add_months(chart)
