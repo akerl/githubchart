@@ -18,8 +18,8 @@ module GithubChart
       chart = Rasem::SVGImage.new(13 * grid.column_size + 13,
                                   13 * grid.row_size + 13)
       svg_add_points grid, chart
-      svg_add_weekdays grid, chart
-      svg_add_months grid, chart
+      svg_add_weekdays chart
+      svg_add_months chart
       chart.close
       chart.output
     end
@@ -63,8 +63,8 @@ module GithubChart
       end
     end
 
-    def svg_add_weekdays(grid, chart)
-      grid.column(0).each do |point|
+    def svg_add_weekdays(chart)
+      @stats.raw.first(7).each do |point|
         index = point.date.wday
         letter = point.date.strftime('%a')[0]
         style = SVG_WEEKDAY_STYLE.clone
@@ -73,8 +73,8 @@ module GithubChart
       end
     end
 
-    def svg_get_month_offsets(grid) # rubocop:disable MethodLength
-      offsets = grid.group_by { |x| x.date.strftime('%Y%U') }
+    def svg_get_month_offsets # rubocop:disable MethodLength
+      offsets = @stats.raw.group_by { |x| x.date.strftime('%Y%U') }
       offsets = offsets.map { |k, v| v.first.date.strftime('%b') }
       offsets = offsets.reduce([]) do |acc, x|
         acc << [x, 0] if acc.last.nil?
@@ -88,9 +88,8 @@ module GithubChart
       offsets
     end
 
-    def svg_add_months(grid, chart)
-      svg_get_month_offsets(grid).each do |month, offset|
-        next if offset == 0
+    def svg_add_months(chart)
+      svg_get_month_offsets.each do |month, offset|
         chart.text(13 * offset + 14, 9, month, SVG_MONTH_STYLE)
       end
     end
