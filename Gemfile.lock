@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    githubchart (0.0.1)
+    githubchart (0.0.2)
       githubstats
       rasem
 
@@ -23,7 +23,7 @@ GEM
       rspec (~> 2.0)
       rspec-instafail (~> 0.2.0)
       ruby-progressbar (~> 1.0)
-    githubstats (0.2.3)
+    githubstats (0.2.4)
       basiccache (< 2)
       curb
       json
