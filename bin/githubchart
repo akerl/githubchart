@@ -8,11 +8,7 @@ OptionParser.new do |opts|
   opts.banner =
     "Usage: githubchart (-u username) (-t type) path/for/new/image\n"
   opts.banner << 'Supported types: ' + GithubChart.supported.join(' ')
-  opts.on('-uNAME', '--user=NAME') { |user| options[:user] = user }
-  opts.on('-tTYPE', '--type=TYPE') do |type|
-    abort 'That type is not supported' unless GithubChart.supports? type
-    options[:type] = type.to_sym
-  end
+  opts.on('-uUSER', '--user=USER') { |user| options[:user] = user }
 end.parse!
 
 SVG_Path = ARGV.shift

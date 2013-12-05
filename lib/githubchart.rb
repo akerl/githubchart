@@ -57,7 +57,7 @@ module GithubChart
 
     def initialize(params = {})
       params = { username: params } unless params.is_a? Hash
-      @stats = GithubStats.new(params['username'])
+      @stats = GithubStats.new(params[:username])
       @colors = params['colors'] || GithubChart::COLORS
     end
 
