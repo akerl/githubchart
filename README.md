@@ -11,6 +11,8 @@ Generates an SVG of your Github contributions:
 
 ![Example image](http://akerl.github.io/githubchart/chart.svg)
 
+![Other user example](http://akerl.github.io/githubchart/other_user.svg)
+
 ## Usage
 
 Run `githubchart path/to/svg` to generate an SVG. To override the default username (pulled from your local shell or .gitconfig), use `github_chart -u username path/to/svg`
