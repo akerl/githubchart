@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    githubchart (0.0.3)
+    githubchart (0.0.4)
       githubstats
       rasem
 
