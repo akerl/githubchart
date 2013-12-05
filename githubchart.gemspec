@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'githubchart'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = Time.now.strftime("%Y-%m-%d")
   s.summary     = 'Generate an SVG of Github contributions data'
   s.description = "Uses GithubStats to grab Github contributions scores and converts that into an SVG"
