@@ -81,7 +81,7 @@ class ::Integer
   # Add ordinalize to simplify converting to spoken string
 
   def ordinalize
-    return self if self == 0
+    return to_s if self == 0
     return "#{self}th" if (11..13).include?(abs % 100)
     case abs % 10
     when 1 then "#{self}st"
