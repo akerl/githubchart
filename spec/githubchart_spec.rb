@@ -21,6 +21,15 @@ describe GithubChart do
   end
 
   describe GithubChart::Chart do
+    it 'has default colors' do
+      expect(GithubChart.new.colors.last).to eql '#1e6823'
+    end
+    it 'lets you override the colors' do
+      expect(GithubChart.new(colors: [1, 2, 3, 4, 5]).colors.last).to eql 5
+    end
+    it 'lets you override the username' do
+      expect(GithubChart.new(username: 'fly').stats.name).to eql 'fly'
+    end
   end
 end
 
