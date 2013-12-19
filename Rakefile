@@ -2,6 +2,11 @@ require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
+desc 'Update bundle'
+task :bundle do
+  `bundle update`
+end
+
 desc 'Run tests'
 RSpec::Core::RakeTask.new(:spec)
 
@@ -17,3 +22,4 @@ task :travislint do
 end
 
 task default: [:spec, :travislint, :rubocop, :build, :install]
+task release: [:bundle]
