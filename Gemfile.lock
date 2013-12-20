@@ -35,7 +35,7 @@ GEM
       slop (~> 3.4, >= 3.4.5)
     powerpack (0.0.9)
     rainbow (1.1.4)
-    rake (10.1.0)
+    rake (10.1.1)
     rasem (0.6.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
