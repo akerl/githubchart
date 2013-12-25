@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'fuubar'
-  s.add_development_dependency 'parser', '~> 2.1.0.pre1'
+  s.add_development_dependency 'parser'
 end
 

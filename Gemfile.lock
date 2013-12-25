@@ -30,12 +30,12 @@ GEM
     json (1.8.1)
     mime-types (2.0)
     multi_json (1.8.2)
-    parser (2.1.0.pre2)
+    parser (2.1.0)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
     powerpack (0.0.9)
     rainbow (1.1.4)
-    rake (10.1.0)
+    rake (10.1.1)
     rasem (0.6.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -72,7 +72,7 @@ DEPENDENCIES
   coveralls
   fuubar
   githubchart!
-  parser (~> 2.1.0.pre1)
+  parser
   rake
   rspec
   rubocop
