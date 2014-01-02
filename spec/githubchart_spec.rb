@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe GithubChart do
-  describe '.new' do
+  describe '#new' do
     it 'creates a new Chart object' do
       expect(GithubChart.new).to be_an_instance_of GithubChart::Chart
     end
   end
 
-  describe '.supported' do
+  describe '#supported' do
     it 'lists supported types' do
       expect(GithubChart.supported).to include(:svg)
     end
   end
 
-  describe '.supports?' do
+  describe '#supports?' do
     it 'checks for type support' do
       expect(GithubChart.supports? :svg).to be_true
       expect(GithubChart.supports? :fish).to be_false
@@ -34,7 +34,7 @@ describe GithubChart do
 end
 
 describe ::Integer do
-  describe '.ordinalize' do
+  describe '#ordinalize' do
     it 'returns a spoken string for a number' do
       [
         [0, '0'],

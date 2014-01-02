@@ -13,7 +13,7 @@ describe GithubChart::Chart do
 
   after(:all) { @file.unlink }
 
-  describe '.svg' do
+  describe '#svg' do
     it 'makes an SVG' do
       expect(`file #{@path}`).to include('Scalable Vector Graphic')
     end
