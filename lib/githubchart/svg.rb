@@ -2,7 +2,6 @@ require 'rasem'
 
 ##
 # Add SVG support to GithubChart
-
 module GithubChart
   ##
   # Declare SVG support
@@ -11,7 +10,6 @@ module GithubChart
 
   ##
   # Convert stats into SVG
-
   class Chart
     def svg
       grid = matrix
@@ -26,8 +24,6 @@ module GithubChart
 
     private
 
-    # rubocop:disable SymbolName
-
     ##
     # Define style for weekday labels
 
@@ -37,7 +33,7 @@ module GithubChart
       :'text-align' => 'center',
       :font => '9px Helvetica, arial, freesans, clean, sans-serif',
       :'white-space' => 'nowrap',
-      :display => 'display',
+      :display => 'display'
     }
 
     ##
@@ -48,10 +44,8 @@ module GithubChart
       :'text-align' => 'center',
       :font => '10px Helvetica, arial, freesans, clean, sans-serif',
       :'white-space' => 'nowrap',
-      :display => 'block',
+      :display => 'block'
     }
-
-    # rubocop:enable SymbolName
 
     def svg_add_points(grid, chart)
       grid.each_with_index do |point, y, x|

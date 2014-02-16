@@ -3,7 +3,6 @@ require 'matrix'
 
 ##
 # Graphing tool for creating Github-style contribution charts
-
 module GithubChart
   class << self
     ##
@@ -45,7 +44,6 @@ module GithubChart
 
   ##
   # Object for parsing and outputing Github stats data
-
   class Chart
     attr_reader :stats
     attr_accessor :colors
@@ -75,7 +73,6 @@ end
 
 ##
 # Add helper methods to Integer
-
 class ::Integer
   ##
   # Add ordinalize to simplify converting to spoken string
