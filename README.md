@@ -1,11 +1,12 @@
 GithubChart
 ============
 
-[![Gem Version](https://badge.fury.io/rb/githubchart.png)](http://badge.fury.io/rb/githubchart)
-[![Dependency Status](https://gemnasium.com/akerl/githubchart.png)](https://gemnasium.com/akerl/githubchart)
-[![Code Climate](https://codeclimate.com/github/akerl/githubchart.png)](https://codeclimate.com/github/akerl/githubchart)
-[![Coverage Status](https://coveralls.io/repos/akerl/githubchart/badge.png?branch=master)](https://coveralls.io/r/akerl/githubchart?branch=master)
-[![Build Status](https://travis-ci.org/akerl/githubchart.png?branch=master)](https://travis-ci.org/akerl/githubchart)
+[![Gem Version](https://img.shields.io/gem/v/githubchart.svg)](https://rubygems.org/gems/githubchart)
+[![Dependency Status](https://img.shields.io/gemnasium/akerl/githubchart.svg)](https://gemnasium.com/akerl/githubchart)
+[![Code Climate](https://img.shields.io/codeclimate/github/akerl/githubchart.svg)](https://codeclimate.com/github/akerl/githubchart)
+[![Coverage Status](https://img.shields.io/coveralls/akerl/githubchart.svg)](https://coveralls.io/r/akerl/githubchart)
+[![Build Status](https://img.shields.io/travis/akerl/githubchart.svg)](https://travis-ci.org/akerl/githubchart)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 Generates an SVG of your Github contributions:
 
