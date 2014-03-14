@@ -73,7 +73,7 @@ end
 
 ##
 # Add helper methods to Integer
-class ::Integer
+class Integer
   ##
   # Add ordinalize to simplify converting to spoken string
 
