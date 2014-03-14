@@ -13,15 +13,14 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['githubchart']
 
-  s.add_runtime_dependency 'githubstats'
-  s.add_runtime_dependency 'rasem'
+  s.add_runtime_dependency 'githubstats', '~> 0.2.7'
+  s.add_runtime_dependency 'rasem', '~> 0.6.1'
 
-  s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'travis-lint'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'coveralls'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'fuubar'
-  s.add_development_dependency 'parser'
+  s.add_development_dependency 'rubocop', '~> 0.19.0'
+  s.add_development_dependency 'travis-lint', '~> 1.8.0'
+  s.add_development_dependency 'rake', '~> 10.1.1'
+  s.add_development_dependency 'coveralls', '~> 0.7.0'
+  s.add_development_dependency 'rspec', '~> 2.14.1'
+  s.add_development_dependency 'fuubar', '~> 1.3.2'
 end
 
