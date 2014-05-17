@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'githubchart'
-  s.version     = '0.0.5'
+  s.version     = '0.0.6'
   s.date        = Time.now.strftime("%Y-%m-%d")
   s.summary     = 'Generate an SVG of Github contributions data'
   s.description = "Uses GithubStats to grab Github contributions scores and converts that into an SVG"
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['githubchart']
 
-  s.add_runtime_dependency 'githubstats', '~> 0.2.7'
+  s.add_runtime_dependency 'githubstats', '~> 0.2.11'
   s.add_runtime_dependency 'rasem', '~> 0.6.1'
 
   s.add_development_dependency 'rubocop', '~> 0.20.1'
