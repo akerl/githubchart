@@ -70,7 +70,7 @@ module GithubChart
     def svg_get_month_offsets
       list = @stats.raw.group_by { |x| x.date.strftime('%Y%U').split('-') }
       acc = 0
-      list = list.map { |k, v| v.first.date.strftime('%b') }
+      list = list.map { |_, v| v.first.date.strftime('%b') }
       list.chunk { |x| x }.map do |month, offset|
         acc += offset.size
         [month, acc - offset.size]

@@ -15,8 +15,8 @@ describe GithubChart do
 
   describe '#supports?' do
     it 'checks for type support' do
-      expect(GithubChart.supports? :svg).to be_true
-      expect(GithubChart.supports? :fish).to be_false
+      expect(GithubChart.supports? :svg).to be_truthy
+      expect(GithubChart.supports? :fish).to be_falsey
     end
   end
 
