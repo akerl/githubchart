@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 10.3.0'
   s.add_development_dependency 'coveralls', '~> 0.7.0'
   s.add_development_dependency 'rspec', '~> 3.0.0'
-  s.add_development_dependency 'fuubar', '~> 1.3.2'
+  s.add_development_dependency 'fuubar', '~> 1.3.3'
 end
 
