@@ -52,7 +52,8 @@ module GithubChart
         next if point.score == -1
         chart.rectangle(
           (x * 13) + 14, (y * 13) + 14, 11, 11,
-          fill: @colors[@stats.quartile(point.score)]
+          fill: @colors[@stats.quartile(point.score)],
+          :'shape-rendering' => 'crispedges'
         )
       end
     end
@@ -69,8 +70,9 @@ module GithubChart
 
     def svg_get_month_offsets
       list = @stats.raw.group_by { |x| x.date.strftime('%Y%U').split('-') }
-      acc = 0
       list = list.map { |_, v| v.first.date.strftime('%b') }
+      list.shift if list[0] == list[1]
+      acc = 0
       list.chunk { |x| x }.map do |month, offset|
         acc += offset.size
         [month, acc - offset.size]
@@ -79,7 +81,7 @@ module GithubChart
 
     def svg_add_months(chart)
       svg_get_month_offsets.each do |month, offset|
-        next if offset > 51
+        next if offset > 51 || offset < 1
         chart.text(13 * offset + 14, 9, month, SVG_MONTH_STYLE)
       end
     end
