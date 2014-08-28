@@ -1,6 +1,9 @@
+$:.unshift File.expand_path('../lib/', __FILE__)
+require 'githubchart/version'
+
 Gem::Specification.new do |s|
   s.name        = 'githubchart'
-  s.version     = '0.0.6'
+  s.version     = GithubChart::VERSION
   s.date        = Time.now.strftime("%Y-%m-%d")
   s.summary     = 'Generate an SVG of Github contributions data'
   s.description = "Uses GithubStats to grab Github contributions scores and converts that into an SVG"

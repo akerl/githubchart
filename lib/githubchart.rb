@@ -89,4 +89,5 @@ class Integer
   end
 end
 
+require 'githubchart/version'
 require 'githubchart/svg'
