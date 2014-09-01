@@ -9,7 +9,23 @@ OptionParser.new do |opts|
     "Usage: githubchart (-u username) (-t type) path/for/new/image\n"
   opts.banner << 'Supported types: ' + GithubChart.supported.join(' ')
   opts.on('-uUSER', '--user=USER', 'Specify GitHub user to graph') do |user|
+    if options.has_key?(:input)
+      puts 'The --user and --input flags are incompatible with each other.'
+      exit 1
+    end
     options[:user] = user
+  end
+  opts.on('-iFILE', '--input=FILE', 'Specify a file with JSON data, - for standard input') do |input|
+    # input and username are incompatible
+    if options.has_key?(:user)
+      puts 'The --user and --input flags are incompatible with each other.'
+      exit 1
+    end
+    unless (input.eql? '-') || (File.exists?(input))
+      puts "The file #{input} doesn't exist."
+      exit 1
+    end
+    options[:input] = input
   end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
@@ -24,6 +40,6 @@ if SVG_Path.nil?
   exit 1
 end
 
-Chart = GithubChart.new(options[:user]).svg
+Chart = GithubChart.new(options).svg
 
 File.open(SVG_Path, 'w') { |file| file << Chart }
