@@ -20,11 +20,25 @@ OptionParser.new do |opts|
       puts 'The --user and --input flags are incompatible with each other.'
       exit 1
     end
+
     unless (input.eql? '-') || (File.exists?(input))
       puts "The file #{input} doesn't exist."
       exit 1
     end
-    options[:input] = input
+
+    if input.eql? '-'
+      contents = STDIN.read
+    else
+      contents = File.read(input)
+    end
+
+    begin
+      contents = JSON.parse(contents)
+    rescue => e
+      raise "Unable to parse JSON data provided: #{e}"
+    end
+
+    options[:data] = GithubStats::Data.new(contents)
   end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
