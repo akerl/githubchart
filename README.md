@@ -18,6 +18,8 @@ Generates an SVG of your Github contributions:
 
 Run `githubchart path/to/svg` to generate an SVG. To override the default username (pulled from your local shell or .gitconfig), use `github_chart -u username path/to/svg`
 
+GithubChart also allows you to provide input from a file instead of pulling data from Github. You can pass JSON to GithubChart by using `githubchart -i /path/to/file`, or use '-' to use STDIN. The JSON must be an array of tuples, with the first element as a date, and the second element being the number of contributions from that date. See spec/examples/input.json for example data.
+
 ## Installation
 
     gem install githubchart
