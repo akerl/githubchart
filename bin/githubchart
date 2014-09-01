@@ -10,15 +10,13 @@ OptionParser.new do |opts|
   opts.banner << 'Supported types: ' + GithubChart.supported.join(' ')
   opts.on('-uUSER', '--user=USER', 'Specify GitHub user to graph') do |user|
     if options.include? :input
-      puts 'The --user and --input flags are incompatible with each other.'
-      exit 1
+      fail 'The --user and --input flags are incompatible with each other.'
     end
     options[:user] = user
   end
   opts.on('-iFILE', '--input=FILE', 'Specify a file with JSON data, - for stdin') do |input|
     if options.include? :user
-      puts 'The --user and --input flags are incompatible with each other.'
-      exit 1
+      fail 'The --user and --input flags are incompatible with each other.'
     end
 
     if input.eql? '-'
@@ -46,8 +44,7 @@ end.parse!
 SVG_Path = ARGV.shift
 
 if SVG_Path.nil?
-  puts 'Please provide the target location for the SVG'
-  exit 1
+  fail 'Please provide the target location for the SVG'
 end
 
 Chart = GithubChart.new(options).svg
