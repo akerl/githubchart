@@ -28,12 +28,12 @@ OptionParser.new do |opts|
     end
 
     begin
-      contents = JSON.parse(contents)
+      parsed = JSON.parse(contents)
     rescue => e
       raise "Unable to parse JSON data provided: #{e}"
     end
 
-    options[:data] = GithubStats::Data.new(contents)
+    options[:data] = GithubStats::Data.new(parsed)
   end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
