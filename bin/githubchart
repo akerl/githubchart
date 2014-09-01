@@ -9,14 +9,14 @@ OptionParser.new do |opts|
     "Usage: githubchart (-u username) (-t type) path/for/new/image\n"
   opts.banner << 'Supported types: ' + GithubChart.supported.join(' ')
   opts.on('-uUSER', '--user=USER', 'Specify GitHub user to graph') do |user|
-    if options.has_key?(:input)
+    if options.include? :input
       puts 'The --user and --input flags are incompatible with each other.'
       exit 1
     end
     options[:user] = user
   end
   opts.on('-iFILE', '--input=FILE', 'Specify a file with JSON data, - for stdin') do |input|
-    if options.has_key?(:user)
+    if options.include? :user
       puts 'The --user and --input flags are incompatible with each other.'
       exit 1
     end
