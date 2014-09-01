@@ -15,8 +15,7 @@ OptionParser.new do |opts|
     end
     options[:user] = user
   end
-  opts.on('-iFILE', '--input=FILE', 'Specify a file with JSON data, - for standard input') do |input|
-    # input and username are incompatible
+  opts.on('-iFILE', '--input=FILE', 'Specify a file with JSON data, - for stdin') do |input|
     if options.has_key?(:user)
       puts 'The --user and --input flags are incompatible with each other.'
       exit 1
