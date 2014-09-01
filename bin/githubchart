@@ -21,15 +21,12 @@ OptionParser.new do |opts|
       exit 1
     end
 
-    unless (input.eql? '-') || (File.exists?(input))
-      puts "The file #{input} doesn't exist."
-      exit 1
-    end
-
     if input.eql? '-'
+      fail 'No data provided on stdin' if STDIN.tty?
       contents = STDIN.read
     else
-      contents = File.read(input)
+      fail 'File does not exist' unless File.exists? input
+      contents = File.read input
     end
 
     begin
