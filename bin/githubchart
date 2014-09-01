@@ -14,7 +14,7 @@ OptionParser.new do |opts|
     end
     options[:user] = user
   end
-  opts.on('-iFILE', '--input=FILE', 'Specify a file with JSON data, - for stdin') do |input|
+  opts.on('-iFILE', '--input=FILE', 'Specify JSON file, - for stdin') do |input|
     if options.include? :user
       fail 'The --user and --input flags are incompatible with each other.'
     end
@@ -23,7 +23,7 @@ OptionParser.new do |opts|
       fail 'No data provided on stdin' if STDIN.tty?
       contents = STDIN.read
     else
-      fail 'File does not exist' unless File.exists? input
+      fail 'File does not exist' unless File.exist? input
       contents = File.read input
     end
 
@@ -42,10 +42,7 @@ OptionParser.new do |opts|
 end.parse!
 
 SVG_Path = ARGV.shift
-
-if SVG_Path.nil?
-  fail 'Please provide the target location for the SVG'
-end
+fail 'Please provide the target location for the SVG' if SVG_Path.nil?
 
 Chart = GithubChart.new(options).svg
 
