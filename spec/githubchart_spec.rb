@@ -27,8 +27,12 @@ describe GithubChart do
     it 'lets you override the colors' do
       expect(GithubChart.new(colors: [1, 2, 3, 4, 5]).colors.last).to eql 5
     end
-    it 'lets you override the username' do
-      expect(GithubChart.new(username: 'fly').stats.name).to eql 'fly'
+    it 'lets you pass external data' do
+      data = JSON.parse(File.read 'spec/examples/input.json')
+      expect(GithubChart.new(data: data).stats).to eql data
+    end
+    it 'creates a data object when not provided' do
+      expect(GithubChart.new(username: 'fly').stats).to be_an_instance_of GithubStats::Data
     end
   end
 end
