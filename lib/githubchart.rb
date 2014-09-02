@@ -54,8 +54,8 @@ module GithubChart
     # Uses colors rather than default, if provided
 
     def initialize(params = {})
-      params = { username: params } unless params.is_a? Hash
-      @stats = GithubStats.new(params[:username])
+      params = { user: params } unless params.is_a? Hash
+      @stats = params.fetch(:data) { GithubStats.new(params[:user]).data }
       @colors = params[:colors] || GithubChart::COLORS
     end
 

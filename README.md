@@ -16,7 +16,9 @@ Generates an SVG of your Github contributions:
 
 ## Usage
 
-Run `githubchart path/to/svg` to generate an SVG. To override the default username (pulled from your local shell or .gitconfig), use `github_chart -u username path/to/svg`
+Run `githubchart path/to/svg` to generate an SVG. To override the default username (pulled from your local shell or .gitconfig), use `githubchart -u username path/to/svg`
+
+GithubChart also allows you to provide input from a file instead of pulling data from Github. You can pass JSON to GithubChart by using `githubchart -i /path/to/file /path/to/svg`, or use '-' to use STDIN. See spec/examples/input.json for example data.
 
 ## Installation
 
