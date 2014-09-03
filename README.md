@@ -20,6 +20,8 @@ Run `githubchart path/to/svg` to generate an SVG. To override the default userna
 
 GithubChart also allows you to provide input from a file instead of pulling data from Github. You can pass JSON to GithubChart by using `githubchart -i /path/to/file /path/to/svg`, or use '-' to use STDIN. See spec/examples/input.json for example data.
 
+If you don't provide a file path, the resulting SVG will be printed to stdout.
+
 ## Installation
 
     gem install githubchart
