@@ -42,8 +42,11 @@ OptionParser.new do |opts|
 end.parse!
 
 SVG_Path = ARGV.shift
-fail 'Please provide the target location for the SVG' if SVG_Path.nil?
 
 Chart = GithubChart.new(options).svg
 
-File.open(SVG_Path, 'w') { |file| file << Chart }
+if SVG_Path.nil?
+  puts Chart
+else
+  File.open(SVG_Path, 'w') { |file| file << Chart }
+end
