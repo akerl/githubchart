@@ -69,9 +69,9 @@ module GithubChart
     end
 
     def svg_get_month_offsets
-      list = @stats.raw.group_by { |x| x.date.strftime('%Y%U').split('-') }
-      list = list.map { |_, v| v.first.date.strftime('%b') }
-      list.shift if list[0] == list[1]
+      list = @stats.raw.select { |x| x.date.sunday? }
+      list.unshift(@stats.raw.first) unless @stats.raw.first.date.sunday?
+      list.map! { |x| x.date.strftime('%b') }
       acc = 0
       list.chunk { |x| x }.map do |month, offset|
         acc += offset.size
@@ -81,7 +81,7 @@ module GithubChart
 
     def svg_add_months(chart)
       svg_get_month_offsets.each do |month, offset|
-        next if offset > 51 || offset < 1
+        next if offset > 51
         chart.text(13 * offset + 14, 9, month, SVG_MONTH_STYLE)
       end
     end
