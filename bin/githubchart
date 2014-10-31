@@ -35,6 +35,13 @@ OptionParser.new do |opts|
 
     options[:data] = GithubStats::Data.new(parsed)
   end
+  opts.on('-cSCHEME', '--colors SCHEME', 'Pick a color scheme') do |scheme|
+    if GithubChart::COLOR_SCHEMES.include? scheme.to_sym
+      options[:colors] = scheme.to_sym
+    else
+      fail 'Unknown color scheme provided'
+    end
+  end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
     exit

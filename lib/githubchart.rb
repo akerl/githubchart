@@ -38,9 +38,11 @@ module GithubChart
   end
 
   ##
-  # Default colors for gradient
-
-  COLORS = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823']
+  # Color schemes for gradient
+  COLOR_SCHEMES = {
+    default: ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'],
+    halloween: ['#EEEEEE', '#FFEE4A', '#FFC501', '#FE9600', '#03001C']
+  }
 
   ##
   # Object for parsing and outputing Github stats data
@@ -56,7 +58,8 @@ module GithubChart
     def initialize(params = {})
       params = { user: params } unless params.is_a? Hash
       @stats = params.fetch(:data) { GithubStats.new(params[:user]).data }
-      @colors = params[:colors] || GithubChart::COLORS
+      @colors = params[:colors] || :default
+      @colors = COLOR_SCHEMES[@colors] unless @colors.is_a? Array
     end
 
     private

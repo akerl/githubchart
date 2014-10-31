@@ -32,7 +32,9 @@ describe GithubChart do
       expect(GithubChart.new(data: data).stats).to eql data
     end
     it 'creates a data object when not provided' do
-      expect(GithubChart.new(username: 'fly').stats).to be_an_instance_of GithubStats::Data
+      expect(
+        GithubChart.new(username: 'fly').stats
+      ).to be_an_instance_of GithubStats::Data
     end
   end
 end
