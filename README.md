@@ -22,7 +22,7 @@ GithubChart also allows you to provide input from a file instead of pulling data
 
 If you don't provide a file path, the resulting SVG will be printed to stdout.
 
-To modify the color scheme used, you can provide `-c SCHEME`. For example, `githubchart -c halloween` uses GitHub's halloween colors.
+To modify the color scheme used, you can provide `-c SCHEME`. For example, `githubchart -c halloween` uses GitHub's halloween colors. Use `-s` to list the available schemes.
 
 ## Installation
 

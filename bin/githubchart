@@ -42,6 +42,13 @@ OptionParser.new do |opts|
       fail 'Unknown color scheme provided'
     end
   end
+  opts.on('-s', '--schemes', 'List known color schemes') do
+    puts 'Color schemes:'
+    GithubChart::COLOR_SCHEMES.each do |scheme, colors|
+      puts "    #{scheme}: #{colors}"
+    end
+    exit
+  end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
     exit
