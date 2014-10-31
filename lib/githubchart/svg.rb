@@ -80,7 +80,9 @@ module GithubChart
     end
 
     def svg_add_months(chart)
-      svg_get_month_offsets.each do |month, offset|
+      offsets = svg_get_month_offsets
+      offsets.shift if offsets.take(2).map(&:last) == [0, 1]
+      offsets.each do |month, offset|
         next if offset > 51
         chart.text(13 * offset + 14, 9, month, SVG_MONTH_STYLE)
       end
