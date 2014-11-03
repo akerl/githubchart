@@ -68,7 +68,7 @@ module GithubChart
       end
     end
 
-    def svg_get_month_offsets
+    def svg_get_month_offsets # rubocop:disable Metrics/AbcSize
       list = @stats.raw.select { |x| x.date.sunday? }
       list.unshift(@stats.raw.first) unless @stats.raw.first.date.sunday?
       list.map! { |x| x.date.strftime('%b') }
