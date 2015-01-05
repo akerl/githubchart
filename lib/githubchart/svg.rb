@@ -1,4 +1,4 @@
-require 'rasem'
+require 'svgplot'
 
 ##
 # Add SVG support to GithubChart
@@ -13,13 +13,12 @@ module GithubChart
   class Chart
     def svg
       grid = matrix
-      chart = Rasem::SVGImage.new(13 * grid.column_size + 13,
-                                  13 * grid.row_size + 13)
+      chart = SVGPlot.new(width: 13 * grid.column_size + 13,
+                          height: 13 * grid.row_size + 13)
       svg_add_points grid, chart
       svg_add_weekdays chart
       svg_add_months chart
-      chart.close
-      chart.output
+      chart.to_s
     end
 
     private
@@ -58,14 +57,16 @@ module GithubChart
       end
     end
 
+    def svg_add_weekday(chart, point)
+      index = point.date.wday
+      letter = point.date.strftime('%a')[0]
+      style = SVG_WEEKDAY_STYLE.clone
+      style[:display] = 'none' unless [1, 3, 5].include? index
+      chart.text(4, 13 * index + 23, style) { raw letter }
+    end
+
     def svg_add_weekdays(chart)
-      @stats.raw.first(7).each do |point|
-        index = point.date.wday
-        letter = point.date.strftime('%a')[0]
-        style = SVG_WEEKDAY_STYLE.clone
-        style[:display] = 'none' unless [1, 3, 5].include? index
-        chart.text(4, 13 * index + 23, letter, style)
-      end
+      @stats.raw.first(7).each { |point| svg_add_weekday chart, point }
     end
 
     def svg_get_month_offsets # rubocop:disable Metrics/AbcSize
@@ -84,7 +85,7 @@ module GithubChart
       offsets.shift if offsets.take(2).map(&:last) == [0, 1]
       offsets.each do |month, offset|
         next if offset > 50
-        chart.text(13 * offset + 14, 9, month, SVG_MONTH_STYLE)
+        chart.text(13 * offset + 14, 9, SVG_MONTH_STYLE) { raw month }
       end
     end
   end
