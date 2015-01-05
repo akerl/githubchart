@@ -52,7 +52,9 @@ module GithubChart
         chart.rectangle(
           (x * 13) + 14, (y * 13) + 14, 11, 11,
           fill: @colors[@stats.quartile(point.score)],
-          :'shape-rendering' => 'crispedges'
+          :'shape-rendering' => 'crispedges',
+          :'data-score' => point.score,
+          :'data-data' => point.date
         )
       end
     end
