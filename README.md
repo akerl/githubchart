@@ -30,5 +30,5 @@ To modify the color scheme used, you can provide `-c SCHEME`. For example, `gith
 
 ## License
 
-GithubChart is released under the MIT License. See the bundled LICENSE file for details.
+githubchart is released under the MIT License. See the bundled LICENSE file for details.
 
