@@ -46,15 +46,20 @@ module GithubChart
       :display => 'block'
     }
 
+    def svg_point_style(point)
+      {
+        fill: @colors[@stats.quartile(point.score)],
+        :'shape-rendering' => 'crispedges'
+      }
+    end
+
     def svg_add_points(grid, chart)
       grid.each_with_index do |point, y, x|
         next if point.score == -1
         chart.rectangle(
           (x * 13) + 14, (y * 13) + 14, 11, 11,
-          fill: @colors[@stats.quartile(point.score)],
-          :'shape-rendering' => 'crispedges',
-          :'data-score' => point.score,
-          :'data-data' => point.date
+          data: { score: point.score, date: point.date },
+          style: svg_point_style(point)
         )
       end
     end
@@ -64,7 +69,7 @@ module GithubChart
       letter = point.date.strftime('%a')[0]
       style = SVG_WEEKDAY_STYLE.clone
       style[:display] = 'none' unless [1, 3, 5].include? index
-      chart.text(4, 13 * index + 23, style) { raw letter }
+      chart.text(4, 13 * index + 23, style: style) { raw letter }
     end
 
     def svg_add_weekdays(chart)
@@ -87,7 +92,7 @@ module GithubChart
       offsets.shift if offsets.take(2).map(&:last) == [0, 1]
       offsets.each do |month, offset|
         next if offset > 50
-        chart.text(13 * offset + 14, 9, SVG_MONTH_STYLE) { raw month }
+        chart.text(13 * offset + 14, 9, style: SVG_MONTH_STYLE) { raw month }
       end
     end
   end
