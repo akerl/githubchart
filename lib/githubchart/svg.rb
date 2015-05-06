@@ -23,6 +23,8 @@ module GithubChart
 
     private
 
+    # rubocop:disable Style/HashSyntax
+
     ##
     # Define style for weekday labels
 
@@ -52,6 +54,8 @@ module GithubChart
         :'shape-rendering' => 'crispedges'
       }
     end
+
+    # rubocop:enable Style/HashSyntax
 
     def svg_add_points(grid, chart)
       grid.each_with_index do |point, y, x|
