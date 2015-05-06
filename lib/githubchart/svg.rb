@@ -27,29 +27,29 @@ module GithubChart
     # Define style for weekday labels
 
     SVG_WEEKDAY_STYLE = {
-      fill: '#ccc',
-      'text-anchor': 'middle',
-      'text-align': 'center',
-      font: '9px Helvetica, arial, freesans, clean, sans-serif',
-      'white-space': 'nowrap',
-      display: 'display'
+      :fill => '#ccc',
+      :'text-anchor' => 'middle',
+      :'text-align' => 'center',
+      :font => '9px Helvetica, arial, freesans, clean, sans-serif',
+      :'white-space' => 'nowrap',
+      :display => 'display'
     }
 
     ##
     # Define Style for month labels
 
     SVG_MONTH_STYLE = {
-      fill: '#aaa',
-      'text-align': 'center',
-      font: '10px Helvetica, arial, freesans, clean, sans-serif',
-      'white-space': 'nowrap',
-      display: 'block'
+      :fill => '#aaa',
+      :'text-align' => 'center',
+      :font => '10px Helvetica, arial, freesans, clean, sans-serif',
+      :'white-space' => 'nowrap',
+      :display => 'block'
     }
 
     def svg_point_style(point)
       {
         fill: @colors[@stats.quartile(point.score)],
-        'shape-rendering': 'crispedges'
+        :'shape-rendering' => 'crispedges'
       }
     end
 
