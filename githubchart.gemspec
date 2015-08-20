@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['githubchart']
 
-  s.add_runtime_dependency 'githubstats', '~> 1.0.0'
+  s.add_runtime_dependency 'githubstats', '~> 1.1.0'
   s.add_runtime_dependency 'svgplot', '~> 0.2.0'
 
   s.add_development_dependency 'rubocop', '~> 0.33.0'
