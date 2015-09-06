@@ -23,7 +23,7 @@ module GithubChart
 
     private
 
-    # rubocop:disable Style/HashSyntax, Lint/UnneededCops
+    # rubocop:disable Style/HashSyntax, Lint/UnneededDisable
 
     ##
     # Define style for weekday labels
@@ -55,7 +55,7 @@ module GithubChart
       }
     end
 
-    # rubocop:enable Style/HashSyntax, Lint/UnneededCops
+    # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
 
     def svg_add_points(grid, chart)
       grid.each_with_index do |point, y, x|
