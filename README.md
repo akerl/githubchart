@@ -24,6 +24,10 @@ If you don't provide a file path, the resulting SVG will be printed to stdout.
 
 To modify the color scheme used, you can provide `-c SCHEME`. For example, `githubchart -c halloween` uses GitHub's halloween colors. Use `-s` to list the available schemes.
 
+## Hosted SVG
+
+A hosted service for loading these SVGs was made by @2016rshah: http://ghchart.rshah.io/ ([source code](https://github.com/2016rshah/githubchart-api))
+
 ## Installation
 
     gem install githubchart
