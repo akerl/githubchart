@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.executables = ['githubchart']
 
   s.add_runtime_dependency 'githubstats', '~> 1.1.0'
-  s.add_runtime_dependency 'svgplot', '~> 0.2.0'
+  s.add_runtime_dependency 'svgplot', '~> 1.0.0'
 
   s.add_development_dependency 'rubocop', '~> 0.34.0'
   s.add_development_dependency 'rake', '~> 10.4.0'
