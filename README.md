@@ -26,7 +26,7 @@ To modify the color scheme used, you can provide `-c SCHEME`. For example, `gith
 
 ### Hosted SVG
 
-A hosted service for loading these SVGs was made by [2016rshah](https://github.com/2016rshah): http://ghchart.rshah.io/ ([source code](https://github.com/2016rshah/githubchart-api))
+A hosted service for loading these SVGs was made by [2016rshah](https://github.com/2016rshah): http://ghchart.rshah.org/ ([source code](https://github.com/2016rshah/githubchart-api))
 
 ## Installation
 
