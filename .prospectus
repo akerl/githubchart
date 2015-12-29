@@ -1,0 +1,11 @@
+item do
+  expected do
+    static
+    set 'green'
+  end
+
+  actual do
+    gemnasium
+    slug 'akerl/githubchart'
+  end
+end
