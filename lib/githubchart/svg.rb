@@ -35,7 +35,7 @@ module GithubChart
       :font => '9px Helvetica, arial, freesans, clean, sans-serif',
       :'white-space' => 'nowrap',
       :display => 'display'
-    }
+    }.freeze
 
     ##
     # Define Style for month labels
@@ -46,7 +46,7 @@ module GithubChart
       :font => '10px Helvetica, arial, freesans, clean, sans-serif',
       :'white-space' => 'nowrap',
       :display => 'block'
-    }
+    }.freeze
 
     def svg_point_style(point)
       {
@@ -71,7 +71,7 @@ module GithubChart
     def svg_add_weekday(chart, point)
       index = point.date.wday
       letter = point.date.strftime('%a')[0]
-      style = SVG_WEEKDAY_STYLE.clone
+      style = SVG_WEEKDAY_STYLE.dup
       style[:display] = 'none' unless [1, 3, 5].include? index
       chart.text(4, 13 * index + 23, style: style) { raw letter }
     end

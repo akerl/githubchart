@@ -10,20 +10,20 @@ OptionParser.new do |opts|
   opts.banner << 'Supported types: ' + GithubChart.supported.join(' ')
   opts.on('-uUSER', '--user=USER', 'Specify GitHub user to graph') do |user|
     if options.include? :input
-      fail 'The --user and --input flags are incompatible with each other.'
+      raise 'The --user and --input flags are incompatible with each other.'
     end
     options[:user] = user
   end
   opts.on('-iFILE', '--input=FILE', 'Specify JSON file, - for stdin') do |input|
     if options.include? :user
-      fail 'The --user and --input flags are incompatible with each other.'
+      raise 'The --user and --input flags are incompatible with each other.'
     end
 
     if input.eql? '-'
-      fail 'No data provided on stdin' if STDIN.tty?
+      raise 'No data provided on stdin' if STDIN.tty?
       contents = STDIN.read
     else
-      fail 'File does not exist' unless File.exist? input
+      raise 'File does not exist' unless File.exist? input
       contents = File.read input
     end
 
@@ -39,7 +39,7 @@ OptionParser.new do |opts|
     if GithubChart::COLOR_SCHEMES.include? scheme.to_sym
       options[:colors] = scheme.to_sym
     else
-      fail 'Unknown color scheme provided'
+      raise 'Unknown color scheme provided'
     end
   end
   opts.on('-s', '--schemes', 'List known color schemes') do

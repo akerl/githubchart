@@ -42,7 +42,7 @@ module GithubChart
   COLOR_SCHEMES = {
     default: ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'],
     halloween: ['#EEEEEE', '#FFEE4A', '#FFC501', '#FE9600', '#03001C']
-  }
+  }.freeze
 
   ##
   # Object for parsing and outputing Github stats data
@@ -81,8 +81,8 @@ class Integer
   # Add ordinalize to simplify converting to spoken string
 
   def ordinalize
-    return to_s if self.zero?
-    return "#{self}th" if (11..13).include?(abs % 100)
+    return to_s if zero?
+    return "#{self}th" if (11..13).cover?(abs % 100)
     case abs % 10
     when 1 then "#{self}st"
     when 2 then "#{self}nd"

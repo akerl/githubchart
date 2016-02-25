@@ -15,8 +15,8 @@ describe GithubChart do
 
   describe '#supports?' do
     it 'checks for type support' do
-      expect(GithubChart.supports? :svg).to be_truthy
-      expect(GithubChart.supports? :fish).to be_falsey
+      expect(GithubChart.supports?(:svg)).to be_truthy
+      expect(GithubChart.supports?(:fish)).to be_falsey
     end
   end
 
@@ -28,7 +28,7 @@ describe GithubChart do
       expect(GithubChart.new(colors: [1, 2, 3, 4, 5]).colors.last).to eql 5
     end
     it 'lets you pass external data' do
-      data = JSON.parse(File.read 'spec/examples/input.json')
+      data = JSON.parse(File.read('spec/examples/input.json'))
       expect(GithubChart.new(data: data).stats).to eql data
     end
     it 'creates a data object when not provided' do
