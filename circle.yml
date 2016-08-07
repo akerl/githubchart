@@ -1,12 +1,6 @@
 dependencies:
   override:
-    - 'rvm-exec 1.9.3-p551 bundle install'
-    - 'rvm-exec 2.0.0-p645 bundle install'
-    - 'rvm-exec 2.1.6 bundle install'
-    - 'rvm-exec 2.2.2 bundle install'
+  - 'for i in $(cat .circle-ruby) ; do rvm-exec $i bundle install || exit 1 ; done'
 test:
   override:
-    - 'rvm-exec 1.9.3-p551 bundle exec rake'
-    - 'rvm-exec 2.0.0-p645 bundle exec rake'
-    - 'rvm-exec 2.1.6 bundle exec rake'
-    - 'rvm-exec 2.2.2 bundle exec rake'
+  - 'for i in $(cat .circle-ruby) ; do rvm-exec $i bundle exec rake || exit 1 ; done'
