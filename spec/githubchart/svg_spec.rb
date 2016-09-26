@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'tempfile'
 
 describe GithubChart::Chart do
-  let(:svg) { GithubChart.new.svg }
-
   before(:all) do
     @file = Tempfile.new('svg')
-    @file.write(GithubChart.new.svg)
+    @file.write(GithubChart.new(user: 'akerl').svg)
     @path = @file.path
     @file.close
   end
