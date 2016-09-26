@@ -36,11 +36,9 @@ OptionParser.new do |opts|
     options[:data] = GithubStats::Data.new(parsed)
   end
   opts.on('-cSCHEME', '--colors SCHEME', 'Pick a color scheme') do |scheme|
-    if GithubChart::COLOR_SCHEMES.include? scheme.to_sym
-      options[:colors] = scheme.to_sym
-    else
-      raise 'Unknown color scheme provided'
-    end
+    is_good_scheme = GithubChart::COLOR_SCHEMES.include? scheme.to_sym
+    raise('Unknown color scheme provided') unless is_good_scheme
+    options[:colors] = scheme.to_sym
   end
   opts.on('-s', '--schemes', 'List known color schemes') do
     puts 'Color schemes:'
