@@ -3,6 +3,7 @@
 require 'githubchart'
 require 'optparse'
 
+# rubocop:disable Metrics/BlockLength
 options = {}
 OptionParser.new do |opts|
   opts.banner =
