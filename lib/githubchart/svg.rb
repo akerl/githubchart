@@ -7,6 +7,7 @@ module GithubChart
   # Declare SVG support
 
   add_support(:svg)
+  add_support(:svg_square)
 
   ##
   # Convert stats into SVG
@@ -18,6 +19,14 @@ module GithubChart
       svg_add_points grid, chart
       svg_add_weekdays chart
       svg_add_months chart
+      chart.to_s
+    end
+
+    def svg_square
+      grid = matrix.minor(0..(matrix.row_size-1), (matrix.column_size - 7)..(matrix.column_size - 1))
+      chart = SVGPlot.new(width: 13 * grid.column_size,
+                          height: 13 * grid.row_size)
+      svg_add_points grid, chart, 0
       chart.to_s
     end
 
@@ -57,11 +66,11 @@ module GithubChart
 
     # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
 
-    def svg_add_points(grid, chart)
+    def svg_add_points(grid, chart, padding=13)
       grid.each_with_index do |point, y, x|
         next if point.score == -1
         chart.rectangle(
-          (x * 13) + 14, (y * 13) + 14, 11, 11,
+          (x * 13) + padding, (y * 13) + padding, 11, 11,
           data: { score: point.score, date: point.date },
           style: svg_point_style(point)
         )

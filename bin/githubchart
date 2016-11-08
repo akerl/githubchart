@@ -5,6 +5,7 @@ require 'optparse'
 
 # rubocop:disable Metrics/BlockLength
 options = {}
+draw_method = :svg
 OptionParser.new do |opts|
   opts.banner =
     "Usage: githubchart (-u username) (-t type) path/for/new/image\n"
@@ -48,6 +49,9 @@ OptionParser.new do |opts|
     end
     exit
   end
+  opts.on('--square', 'Draw a square (last 7 weeks)') do
+    draw_method = :svg_square
+  end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
     exit
@@ -56,7 +60,7 @@ end.parse!
 
 SVG_Path = ARGV.shift
 
-Chart = GithubChart.new(options).svg
+Chart = GithubChart.new(options).send(draw_method)
 
 if SVG_Path.nil?
   puts Chart
