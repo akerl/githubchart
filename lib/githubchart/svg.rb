@@ -32,8 +32,7 @@ module GithubChart
     end
 
     def render_svg_square
-      grid = matrix.minor(0..matrix.row_size - 1,
-                          matrix.column_size - 7..matrix.column_size - 1)
+      grid = matrix.minor(0, 7, -7, 7)
       chart = SVGPlot.new(width: 13 * grid.column_size,
                           height: 13 * grid.row_size)
       svg_add_points grid, chart, 0
