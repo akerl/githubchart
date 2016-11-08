@@ -5,6 +5,8 @@ require 'optparse'
 
 # rubocop:disable Metrics/BlockLength
 options = {}
+render_type = 'svg'.freeze
+
 OptionParser.new do |opts|
   opts.banner =
     "Usage: githubchart (-u username) (-t type) path/for/new/image\n"
@@ -48,6 +50,12 @@ OptionParser.new do |opts|
     end
     exit
   end
+  opts.on('-t TYPE', '--type TYPE', 'What type to render') do |type|
+    raise('Unsupported render type') unless GithubChart.supported.include?(
+      type.to_sym
+    )
+    render_type = type
+  end
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubChart::VERSION
     exit
@@ -56,7 +64,7 @@ end.parse!
 
 SVG_Path = ARGV.shift
 
-Chart = GithubChart.new(options).svg
+Chart = GithubChart.new(options).render(render_type)
 
 if SVG_Path.nil?
   puts Chart

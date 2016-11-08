@@ -62,6 +62,13 @@ module GithubChart
       @colors = COLOR_SCHEMES[@colors] unless @colors.is_a? Array
     end
 
+    def render(type)
+      unless GithubChart.supports? type
+        raise NameError, "Format #{type} is unsupported."
+      end
+      send("render_#{type}".to_sym)
+    end
+
     private
 
     ##
