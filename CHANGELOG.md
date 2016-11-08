@@ -1,3 +1,11 @@
+# 2.0.1 / 2016-11-08
+
+* [BUGFIX] Actually update changelog in release
+
+# 2.0.0 / 2016-11-07
+
+* [FEATURE] Add support for svg_square as a rendering type, thanks @blerchin
+
 # 1.1.0 / 2016-05-19
 
 * [BUGFIX] Upgrade to newer GithubStats that fixes streak parsing
