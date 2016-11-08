@@ -13,8 +13,10 @@ module GithubChart
   # Convert stats into SVG
   class Chart
     def render(type)
-      raise NameError, "Format #{type} is unsupported." unless GithubChart::supports? type
-      self.send("render_#{type}".to_sym)
+      unless GithubChart.supports? type
+        raise NameError, "Format #{type} is unsupported."
+      end
+      send("render_#{type}".to_sym)
     end
 
     private
@@ -30,7 +32,8 @@ module GithubChart
     end
 
     def render_svg_square
-      grid = matrix.minor(0..(matrix.row_size-1), (matrix.column_size - 7)..(matrix.column_size - 1))
+      grid = matrix.minor(0..matrix.row_size - 1,
+                          matrix.column_size - 7..matrix.column_size - 1)
       chart = SVGPlot.new(width: 13 * grid.column_size,
                           height: 13 * grid.row_size)
       svg_add_points grid, chart, 0
@@ -71,7 +74,7 @@ module GithubChart
 
     # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
 
-    def svg_add_points(grid, chart, padding=14)
+    def svg_add_points(grid, chart, padding = 14)
       grid.each_with_index do |point, y, x|
         next if point.score == -1
         chart.rectangle(

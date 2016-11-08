@@ -17,7 +17,8 @@ describe GithubChart::Chart do
     end
 
     it 'raises error if render type is unsupported' do
-      expect{GithubChart.new(user: 'akerl').render(:dog)}.to raise_error(NameError)
+      expect { GithubChart.new(user: 'akerl').render(:dog) }
+        .to raise_error(NameError)
     end
   end
 end
