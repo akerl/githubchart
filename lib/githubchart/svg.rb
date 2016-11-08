@@ -12,7 +12,14 @@ module GithubChart
   ##
   # Convert stats into SVG
   class Chart
-    def svg
+    def render(type)
+      raise NameError, "Format #{type} is unsupported." unless GithubChart::supports? type
+      self.send("render_#{type}".to_sym)
+    end
+
+    private
+
+    def render_svg
       grid = matrix
       chart = SVGPlot.new(width: 13 * grid.column_size + 13,
                           height: 13 * grid.row_size + 13)
@@ -22,15 +29,13 @@ module GithubChart
       chart.to_s
     end
 
-    def svg_square
+    def render_svg_square
       grid = matrix.minor(0..(matrix.row_size-1), (matrix.column_size - 7)..(matrix.column_size - 1))
       chart = SVGPlot.new(width: 13 * grid.column_size,
                           height: 13 * grid.row_size)
       svg_add_points grid, chart, 0
       chart.to_s
     end
-
-    private
 
     # rubocop:disable Style/HashSyntax, Lint/UnneededDisable
 
