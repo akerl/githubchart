@@ -66,7 +66,7 @@ module GithubChart
 
     # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
 
-    def svg_add_points(grid, chart, padding=13)
+    def svg_add_points(grid, chart, padding=14)
       grid.each_with_index do |point, y, x|
         next if point.score == -1
         chart.rectangle(
