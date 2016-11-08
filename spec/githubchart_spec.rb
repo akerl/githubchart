@@ -37,6 +37,13 @@ describe GithubChart do
       ).to be_an_instance_of GithubStats::Data
     end
   end
+
+  describe '#render' do
+    it 'raises error if render type is unsupported' do
+      expect { GithubChart.new(user: 'akerl').render(:dog) }
+        .to raise_error(NameError)
+    end
+  end
 end
 
 describe ::Integer do

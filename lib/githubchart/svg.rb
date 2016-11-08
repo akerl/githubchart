@@ -12,13 +12,6 @@ module GithubChart
   ##
   # Convert stats into SVG
   class Chart
-    def render(type)
-      unless GithubChart.supports? type
-        raise NameError, "Format #{type} is unsupported."
-      end
-      send("render_#{type}".to_sym)
-    end
-
     private
 
     def render_svg
@@ -33,8 +26,8 @@ module GithubChart
 
     def render_svg_square
       grid = matrix.minor(0, 7, -7, 7)
-      chart = SVGPlot.new(width: 13 * grid.column_size,
-                          height: 13 * grid.row_size)
+      chart = SVGPlot.new(width: 13 * grid.column_size - 2,
+                          height: 13 * grid.row_size - 2)
       svg_add_points grid, chart, 0
       chart.to_s
     end
