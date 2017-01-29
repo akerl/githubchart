@@ -1,5 +1,6 @@
 dependencies:
   override:
+  - 'for i in $(cat .circle-ruby) ; do rvm-exec $i gem update --system --no-doc || exit 1 ; done'
   - 'for i in $(cat .circle-ruby) ; do rvm-exec $i bundle install || exit 1 ; done'
 test:
   override:
