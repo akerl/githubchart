@@ -1,3 +1,7 @@
+# 2.1.0 / 2017-08-25
+
+* [ENHANCEMENT] Upgrade to latest githubstats
+
 # 2.0.1 / 2016-11-08
 
 * [BUGFIX] Actually update changelog in release
