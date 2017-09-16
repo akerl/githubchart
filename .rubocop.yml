@@ -1,2 +1,2 @@
-Encoding:
-    Enabled: false
+inherit_gem:
+  goodcop: .rubocop.yml
