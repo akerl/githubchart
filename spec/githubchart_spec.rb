@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-# rubocop:disable Metrics/BlockLength
-
 describe GithubChart do
   describe '#new' do
     it 'creates a new Chart object' do
