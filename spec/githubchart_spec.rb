@@ -22,7 +22,7 @@ describe GithubChart do
 
   describe GithubChart::Chart do
     it 'has default colors' do
-      expect(GithubChart.new.colors.last).to eql '#1e6823'
+      expect(GithubChart.new.colors.last).to eql '#196127'
     end
     it 'lets you override the colors' do
       expect(GithubChart.new(colors: [1, 2, 3, 4, 5]).colors.last).to eql 5

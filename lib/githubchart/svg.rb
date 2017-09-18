@@ -16,8 +16,8 @@ module GithubChart
 
     def render_svg
       grid = matrix
-      chart = SVGPlot.new(width: 13 * grid.column_size + 13,
-                          height: 13 * grid.row_size + 13)
+      chart = SVGPlot.new(width: 12 * grid.column_size + 13,
+                          height: 12 * grid.row_size + 13)
       svg_add_points grid, chart
       svg_add_weekdays chart
       svg_add_months chart
@@ -26,8 +26,8 @@ module GithubChart
 
     def render_svg_square
       grid = matrix.minor(0, 7, -7, 7)
-      chart = SVGPlot.new(width: 13 * grid.column_size - 2,
-                          height: 13 * grid.row_size - 2)
+      chart = SVGPlot.new(width: 12 * grid.column_size - 2,
+                          height: 12 * grid.row_size - 2)
       svg_add_points grid, chart, 0
       chart.to_s
     end
@@ -38,10 +38,11 @@ module GithubChart
     # Define style for weekday labels
 
     SVG_WEEKDAY_STYLE = {
-      :fill => '#ccc',
+      :fill => '#767676',
       :'text-anchor' => 'middle',
       :'text-align' => 'center',
-      :font => '9px Helvetica, arial, freesans, clean, sans-serif',
+      :'font-family' => '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
+      :'font-size' => '9px',
       :'white-space' => 'nowrap',
       :display => 'display'
     }.freeze
@@ -70,7 +71,7 @@ module GithubChart
       grid.each_with_index do |point, y, x|
         next if point.score == -1
         chart.rectangle(
-          (x * 13) + padding, (y * 13) + padding, 11, 11,
+          (x * 12) + padding, (y * 12) + padding, 10, 10,
           data: { score: point.score, date: point.date },
           style: svg_point_style(point)
         )
@@ -79,10 +80,10 @@ module GithubChart
 
     def svg_add_weekday(chart, point)
       index = point.date.wday
-      letter = point.date.strftime('%a')[0]
+      letter = point.date.strftime('%a')
       style = SVG_WEEKDAY_STYLE.dup
       style[:display] = 'none' unless [1, 3, 5].include? index
-      chart.text(4, 13 * index + 23, style: style) { raw letter }
+      chart.text(0, 13 * index + 23, style: style) { raw letter }
     end
 
     def svg_add_weekdays(chart)

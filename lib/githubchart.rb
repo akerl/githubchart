@@ -40,7 +40,8 @@ module GithubChart
   ##
   # Color schemes for gradient
   COLOR_SCHEMES = {
-    default: ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'],
+    default: ['#eeeeee', '#c6e48b', '#7bc96f', '#239a3b', '#196127'],
+    old: ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'],
     halloween: ['#EEEEEE', '#FFEE4A', '#FFC501', '#FE9600', '#03001C']
   }.freeze
 
