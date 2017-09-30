@@ -1,3 +1,7 @@
+# 3.0.0 / 2017-09-29
+
+* [ENHANCEMENT] Upgrade to latest githubstats with better error messages
+
 # 2.1.0 / 2017-08-25
 
 * [ENHANCEMENT] Upgrade to latest githubstats
