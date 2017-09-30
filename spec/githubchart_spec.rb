@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GithubChart do
   describe '#new' do
     it 'creates a new Chart object' do
-      expect(GithubChart.new).to be_an_instance_of GithubChart::Chart
+      expect(GithubChart.new(data: [])).to be_an_instance_of GithubChart::Chart
     end
   end
 
@@ -22,10 +22,11 @@ describe GithubChart do
 
   describe GithubChart::Chart do
     it 'has default colors' do
-      expect(GithubChart.new.colors.last).to eql '#196127'
+      expect(GithubChart.new(data: []).colors.last).to eql '#196127'
     end
     it 'lets you override the colors' do
-      expect(GithubChart.new(colors: [1, 2, 3, 4, 5]).colors.last).to eql 5
+      colors = [1, 2, 3, 4, 5]
+      expect(GithubChart.new(data: [], colors: colors).colors.last).to eql 5
     end
     it 'lets you pass external data' do
       data = JSON.parse(File.read('spec/examples/input.json'))
@@ -33,7 +34,7 @@ describe GithubChart do
     end
     it 'creates a data object when not provided' do
       expect(
-        GithubChart.new(username: 'fly').stats
+        GithubChart.new(user: 'akerl').stats
       ).to be_an_instance_of GithubStats::Data
     end
   end

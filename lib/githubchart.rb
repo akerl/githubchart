@@ -58,7 +58,7 @@ module GithubChart
 
     def initialize(params = {})
       params = { user: params } unless params.is_a? Hash
-      @stats = params.fetch(:data) { GithubStats.new(params[:user]).data }
+      @stats = load_stats(params[:data], params[:user])
       @colors = params[:colors] || :default
       @colors = COLOR_SCHEMES[@colors] unless @colors.is_a? Array
     end
@@ -71,6 +71,17 @@ module GithubChart
     end
 
     private
+
+    ##
+    # Load stats from provided arg or github
+
+    def load_stats(data, user)
+      return data if data
+      raise('No data or user provided') unless user
+      stats = GithubStats.new(user).data
+      raise("Failed to find data for #{user} on GitHub") unless stats
+      stats
+    end
 
     ##
     # Convert the data into a matrix of weeks
