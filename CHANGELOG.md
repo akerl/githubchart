@@ -1,3 +1,7 @@
+# 3.1.0 / 2017-10-03
+
+* [ENHANCEMENT] GitHub updated their styling; this updated matches that change
+
 # 3.0.0 / 2017-09-29
 
 * [ENHANCEMENT] Upgrade to latest githubstats with better error messages
