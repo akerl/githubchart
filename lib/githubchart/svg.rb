@@ -14,10 +14,14 @@ module GithubChart
   class Chart
     private
 
+    CUBE_SIZE = 12
+    X_PAD = 27
+    Y_PAD = 20
+
     def render_svg
       grid = matrix
-      chart = SVGPlot.new(width: 12 * grid.column_size + 27,
-                          height: 12 * grid.row_size + 20)
+      chart = SVGPlot.new(width: CUBE_SIZE * grid.column_size + X_PAD,
+                          height: CUBE_SIZE * grid.row_size + Y_PAD)
       svg_add_points grid, chart
       svg_add_weekdays chart
       svg_add_months chart
@@ -26,8 +30,8 @@ module GithubChart
 
     def render_svg_square
       grid = matrix.minor(0, 7, -7, 7)
-      chart = SVGPlot.new(width: 12 * grid.column_size - 2,
-                          height: 12 * grid.row_size - 2)
+      chart = SVGPlot.new(width: CUBE_SIZE * grid.column_size - 2,
+                          height: CUBE_SIZE * grid.row_size - 2)
       svg_add_points grid, chart, 0, 0
       chart.to_s
     end
@@ -35,28 +39,25 @@ module GithubChart
     # rubocop:disable Style/HashSyntax, Lint/UnneededDisable
 
     ##
-    # Define style for weekday labels
+    # Define shared label style
 
-    SVG_WEEKDAY_STYLE = {
+    SVG_SHARED_STYLE = {
       :fill => '#767676',
       :'text-anchor' => 'start',
       :'text-align' => 'center',
       :'font-family' => '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
-      :'font-size' => '9px',
       :'white-space' => 'nowrap'
     }.freeze
 
     ##
+    # Define style for weekday labels
+
+    SVG_WEEKDAY_STYLE = SVG_SHARED_STYLE.dup.merge(:'font-size' => '9px').freeze
+
+    ##
     # Define Style for month labels
 
-    SVG_MONTH_STYLE = {
-      :fill => '#767676',
-      :'text-align' => 'center',
-      :'font-family' => '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
-      :'font-size' => '10px',
-      :'white-space' => 'nowrap',
-      :display => 'block'
-    }.freeze
+    SVG_MONTH_STYLE = SVG_SHARED_STYLE.dup.merge(:'font-size' => '10px').freeze
 
     def svg_point_style(point)
       {
@@ -65,13 +66,11 @@ module GithubChart
       }
     end
 
-    # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
-
-    def svg_add_points(grid, chart, xpadding = 27, ypadding = 20)
+    def svg_add_points(grid, chart, xpadding = X_PAD, ypadding = Y_PAD)
       grid.each_with_index do |point, y, x|
         next if point.score == -1
         chart.rectangle(
-          (x * 12) + xpadding, (y * 12) + ypadding, 10, 10,
+          (x * CUBE_SIZE) + xpadding, (y * CUBE_SIZE) + ypadding, 10, 10,
           data: { score: point.score, date: point.date },
           style: svg_point_style(point)
         )
@@ -84,7 +83,7 @@ module GithubChart
       style = SVG_WEEKDAY_STYLE.dup
       style[:display] = 'none' unless [1, 3, 5].include? index
       shift = index > 3 ? 29 : 28
-      chart.text(0, 12 * index + shift, style: style) { raw letter }
+      chart.text(0, CUBE_SIZE * index + shift, style: style) { raw letter }
     end
 
     def svg_add_weekdays(chart)
@@ -107,7 +106,8 @@ module GithubChart
       offsets.shift if [1, 2].include? offsets[1].last
       offsets.each do |month, offset|
         next if offset > 50
-        chart.text(12 * offset + 27, 10, style: SVG_MONTH_STYLE) { raw month }
+        x = CUBE_SIZE * offset + X_PAD
+        chart.text(x, 10, style: SVG_MONTH_STYLE) { raw month }
       end
     end
   end
