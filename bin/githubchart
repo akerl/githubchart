@@ -21,7 +21,6 @@ OptionParser.new do |opts|
     if options.include? :user
       raise 'The --user and --input flags are incompatible with each other.'
     end
-
     if input.eql? '-'
       raise 'No data provided on stdin' if STDIN.tty?
       contents = STDIN.read
@@ -29,13 +28,11 @@ OptionParser.new do |opts|
       raise 'File does not exist' unless File.exist? input
       contents = File.read input
     end
-
     begin
       parsed = JSON.parse(contents)
     rescue StandardError => e
       raise "Unable to parse JSON data provided: #{e}"
     end
-
     options[:data] = GithubStats::Data.new(parsed)
   end
   opts.on('-cSCHEME', '--colors SCHEME', 'Pick a color scheme') do |scheme|
@@ -61,6 +58,7 @@ OptionParser.new do |opts|
     exit
   end
 end.parse!
+# rubocop:enable Metrics/BlockLength
 
 SVG_Path = ARGV.shift
 

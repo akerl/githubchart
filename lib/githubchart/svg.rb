@@ -49,6 +49,8 @@ module GithubChart
       :'white-space' => 'nowrap'
     }.freeze
 
+    # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
+
     ##
     # Define style for weekday labels
 
