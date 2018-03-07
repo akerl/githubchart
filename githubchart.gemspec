@@ -1,4 +1,5 @@
-$:.unshift File.expand_path('../lib/', __FILE__)
+require 'English'
+$LOAD_PATH.unshift File.expand_path('lib', __dir__)
 require 'githubchart/version'
 
 Gem::Specification.new do |s|
