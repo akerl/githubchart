@@ -36,8 +36,6 @@ module GithubChart
       chart.to_s
     end
 
-    # rubocop:disable Style/HashSyntax, Lint/UnneededDisable
-
     ##
     # Define shared label style
 
@@ -48,8 +46,6 @@ module GithubChart
       :'font-family' => '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
       :'white-space' => 'nowrap'
     }.freeze
-
-    # rubocop:enable Style/HashSyntax, Lint/UnneededDisable
 
     ##
     # Define style for weekday labels
