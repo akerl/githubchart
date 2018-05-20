@@ -1,25 +1,11 @@
-Prospectus.extra_dep('file', 'prospectus_circleci')
-
 my_slug = 'akerl/githubchart'
+
+Prospectus.extra_dep('file', 'prospectus_circleci')
+Prospectus.extra_dep('file', 'prospectus_gems')
 
 item do
   noop
 
-  deps do
-    item do
-      name 'gems'
-
-      expected do
-        static
-        set 'green'
-      end
-
-      actual do
-        gemnasium
-        slug my_slug
-      end
-    end
-  end
-
+  extend ProspectusGems::Gemspec.new
   extend ProspectusCircleci::Build.new(my_slug)
 end
