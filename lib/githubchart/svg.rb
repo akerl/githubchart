@@ -40,27 +40,27 @@ module GithubChart
     # Define shared label style
 
     SVG_SHARED_STYLE = {
-      :fill => '#767676',
-      :'text-anchor' => 'start',
-      :'text-align' => 'center',
-      :'font-family' => '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
-      :'white-space' => 'nowrap'
+      fill: '#767676',
+      'text-anchor': 'start',
+      'text-align': 'center',
+      'font-family': '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
+      'white-space': 'nowrap'
     }.freeze
 
     ##
     # Define style for weekday labels
 
-    SVG_WEEKDAY_STYLE = SVG_SHARED_STYLE.dup.merge(:'font-size' => '9px').freeze
+    SVG_WEEKDAY_STYLE = SVG_SHARED_STYLE.dup.merge('font-size': '9px').freeze
 
     ##
     # Define Style for month labels
 
-    SVG_MONTH_STYLE = SVG_SHARED_STYLE.dup.merge(:'font-size' => '10px').freeze
+    SVG_MONTH_STYLE = SVG_SHARED_STYLE.dup.merge('font-size': '10px').freeze
 
     def svg_point_style(point)
       {
         fill: @colors[@stats.quartile(point.score)],
-        :'shape-rendering' => 'crispedges'
+        'shape-rendering': 'crispedges'
       }
     end
 
