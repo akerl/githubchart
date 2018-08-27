@@ -2,7 +2,6 @@ GithubChart
 ============
 
 [![Gem Version](https://img.shields.io/gem/v/githubchart.svg)](https://rubygems.org/gems/githubchart)
-[![Dependency Status](https://img.shields.io/gemnasium/akerl/githubchart.svg)](https://gemnasium.com/akerl/githubchart)
 [![Build Status](https://img.shields.io/circleci/project/akerl/githubchart/master.svg)](https://circleci.com/gh/akerl/githubchart)
 [![Coverage Status](https://img.shields.io/codecov/c/github/akerl/githubchart.svg)](https://codecov.io/github/akerl/githubchart)
 [![Code Quality](https://img.shields.io/codacy/e8ee7e2aba4c4a01b93d5c0493bef68b.svg)](https://www.codacy.com/app/akerl/githubchart)
