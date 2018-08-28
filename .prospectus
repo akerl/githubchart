@@ -1,11 +1,11 @@
 my_slug = 'akerl/githubchart'
 
-Prospectus.extra_dep('file', 'prospectus_circleci')
+Prospectus.extra_dep('file', 'prospectus_travis')
 Prospectus.extra_dep('file', 'prospectus_gems')
 
 item do
   noop
 
   extend ProspectusGems::Gemspec.new
-  extend ProspectusCircleci::Build.new(my_slug)
+  extend ProspectusTravis::Build.new(my_slug)
 end
