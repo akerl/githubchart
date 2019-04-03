@@ -1,4 +1,4 @@
-dist: trusty
+dist: xenial
 install:
 - for i in $(cat .circle-ruby) ; do rvm install $i || exit 1 ; done
 - for i in $(cat .circle-ruby) ; do rvm-exec $i bundle install || exit 1 ; done
