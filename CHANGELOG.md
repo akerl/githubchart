@@ -1,3 +1,7 @@
+# 3.1.1 / 2020-08-13
+
+* [ENHANCEMENT] Update GithubStats dep
+
 # 3.1.0 / 2017-10-03
 
 * [ENHANCEMENT] GitHub updated their styling; this updated matches that change
