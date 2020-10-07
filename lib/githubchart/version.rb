@@ -1,5 +1,5 @@
 ##
 # Define the version
 module GithubChart
-  VERSION = '3.1.1'.freeze
+  VERSION = '3.2.0'.freeze
 end
