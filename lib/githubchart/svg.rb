@@ -43,7 +43,7 @@ module GithubChart
       fill: '#767676',
       'text-anchor': 'start',
       'text-align': 'center',
-      'font-family': '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Metrics/LineLength
+      'font-family': '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\'', # rubocop:disable Layout/LineLength
       'white-space': 'nowrap'
     }.freeze
 

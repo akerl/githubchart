@@ -20,8 +20,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'githubstats', '~> 3.1.0'
   s.add_runtime_dependency 'svgplot', '~> 1.0.0'
 
-  s.add_development_dependency 'rubocop', '~> 0.76.0'
-  s.add_development_dependency 'goodcop', '~> 0.8.0'
+  s.add_development_dependency 'goodcop', '~> 0.9.3'
   s.add_development_dependency 'rake', '~> 13.0.0'
   s.add_development_dependency 'codecov', '~> 0.1.1'
   s.add_development_dependency 'rspec', '~> 3.9.0'

@@ -1,3 +1,7 @@
+# 3.3.0 / 2021-02-06
+
+* [ENHANCEMENT] Update GithubStats dep
+
 # 3.2.0 / 2020-10-06
 
 * [ENHANCEMENT] Update GithubStats dep
