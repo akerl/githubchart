@@ -20,8 +20,8 @@ module GithubChart
 
     def render_svg
       grid = matrix
-      chart = SVGPlot.new(width: CUBE_SIZE * grid.column_size + X_PAD,
-                          height: CUBE_SIZE * grid.row_size + Y_PAD)
+      chart = SVGPlot.new(width: (CUBE_SIZE * grid.column_size) + X_PAD,
+                          height: (CUBE_SIZE * grid.row_size) + Y_PAD)
       svg_add_points grid, chart
       svg_add_weekdays chart
       svg_add_months chart
@@ -30,8 +30,8 @@ module GithubChart
 
     def render_svg_square
       grid = matrix.minor(0, 7, -7, 7)
-      chart = SVGPlot.new(width: CUBE_SIZE * grid.column_size - 2,
-                          height: CUBE_SIZE * grid.row_size - 2)
+      chart = SVGPlot.new(width: (CUBE_SIZE * grid.column_size) - 2,
+                          height: (CUBE_SIZE * grid.row_size) - 2)
       svg_add_points grid, chart, 0, 0
       chart.to_s
     end
@@ -81,7 +81,7 @@ module GithubChart
       style = SVG_WEEKDAY_STYLE.dup
       style[:display] = 'none' unless [1, 3, 5].include? index
       shift = index > 3 ? 29 : 28
-      chart.text(0, CUBE_SIZE * index + shift, style: style) { raw letter }
+      chart.text(0, (CUBE_SIZE * index) + shift, style: style) { raw letter }
     end
 
     def svg_add_weekdays(chart)
@@ -104,7 +104,7 @@ module GithubChart
       offsets.shift if [1, 2].include? offsets[1].last
       offsets.each do |month, offset|
         next if offset > 50
-        x = CUBE_SIZE * offset + X_PAD
+        x = (CUBE_SIZE * offset) + X_PAD
         chart.text(x, 10, style: SVG_MONTH_STYLE) { raw month }
       end
     end

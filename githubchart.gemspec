@@ -5,25 +5,20 @@ require 'githubchart/version'
 Gem::Specification.new do |s|
   s.name        = 'githubchart'
   s.version     = GithubChart::VERSION
-  s.date        = Time.now.strftime("%Y-%m-%d")
   s.summary     = 'Generate an SVG of Github contributions data'
-  s.description = "Uses GithubStats to grab Github contributions scores and converts that into an SVG"
+  s.description = 'Uses GithubStats to grab Github contributions scores and converts that into an SVG'
   s.authors     = ['Les Aker']
   s.email       = 'me@lesaker.org'
   s.homepage    = 'https://github.com/akerl/githubchart'
   s.license     = 'MIT'
 
   s.files       = `git ls-files`.split
-  s.test_files  = `git ls-files spec/*`.split
   s.executables = ['githubchart']
 
-  s.add_runtime_dependency 'githubstats', '~> 3.2.0'
+  s.add_runtime_dependency 'githubstats', '~> 3.3.0'
+  s.add_runtime_dependency 'matrix', '~> 0.4.2'
   s.add_runtime_dependency 'svgplot', '~> 1.0.0'
 
-  s.add_development_dependency 'goodcop', '~> 0.9.3'
-  s.add_development_dependency 'rake', '~> 13.0.0'
-  s.add_development_dependency 'codecov', '~> 0.1.1'
-  s.add_development_dependency 'rspec', '~> 3.9.0'
-  s.add_development_dependency 'fuubar', '~> 2.5.0'
+  s.add_development_dependency 'goodcop', '~> 0.9.7'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end
-

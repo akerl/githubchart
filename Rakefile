@@ -11,4 +11,4 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
 end
 
-task default: [:spec, :rubocop, :build, :install]
+task default: %i[spec rubocop build install]

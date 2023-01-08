@@ -1,3 +1,7 @@
+# 3.4.0 / 2023-01-08
+
+* [ENHANCEMENT] Update GithubStats dep
+
 # 3.3.1 / 2021-02-06
 
 * [BUGFIX] Actually bump githubstats dep

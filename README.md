@@ -2,8 +2,7 @@ GithubChart
 ============
 
 [![Gem Version](https://img.shields.io/gem/v/githubchart.svg)](https://rubygems.org/gems/githubchart)
-[![Build Status](https://img.shields.io/travis/com/akerl/githubchart.svg)](https://travis-ci.com/akerl/githubchart)
-[![Coverage Status](https://img.shields.io/codecov/c/github/akerl/githubchart.svg)](https://codecov.io/github/akerl/githubchart)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/akerl/githubchart/build.yml?branch=main)](https://github.com/akerl/githubchart/actions)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 Generates an SVG of your Github contributions:
