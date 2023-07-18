@@ -83,7 +83,7 @@ module GithubChart
 
     ##
     # Convert the data into a matrix of weeks
-    # The fill value is used to pad the front and backdd
+    # The fill value is used to pad the front and back
 
     def matrix(fill_value = -1)
       Matrix[*@stats.pad(fill_value).each_slice(7).to_a.transpose]

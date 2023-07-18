@@ -1,3 +1,7 @@
+# 4.0.0 / 2023-07-18
+
+* [BUGFIX] Update GithubStats dep to use new Github.com format for table
+
 # 3.4.0 / 2023-01-08
 
 * [ENHANCEMENT] Update GithubStats dep
