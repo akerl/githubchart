@@ -65,7 +65,7 @@ module GithubChart
 
     def render(type)
       raise(NameError, "Format #{type} is unsupported.") unless GithubChart.supports? type
-      send("render_#{type}".to_sym)
+      send(:"render_#{type}")
     end
 
     private

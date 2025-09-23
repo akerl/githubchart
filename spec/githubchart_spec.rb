@@ -47,7 +47,7 @@ describe GithubChart do
   end
 end
 
-describe ::Integer do
+describe Integer do
   describe '#ordinalize' do
     it 'returns a spoken string for a number' do
       [

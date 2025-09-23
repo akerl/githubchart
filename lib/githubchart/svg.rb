@@ -12,29 +12,9 @@ module GithubChart
   ##
   # Convert stats into SVG
   class Chart
-    private
-
     CUBE_SIZE = 12
     X_PAD = 27
     Y_PAD = 20
-
-    def render_svg
-      grid = matrix
-      chart = SVGPlot.new(width: (CUBE_SIZE * grid.column_size) + X_PAD,
-                          height: (CUBE_SIZE * grid.row_size) + Y_PAD)
-      svg_add_points grid, chart
-      svg_add_weekdays chart
-      svg_add_months chart
-      chart.to_s
-    end
-
-    def render_svg_square
-      grid = matrix.minor(0, 7, -7, 7)
-      chart = SVGPlot.new(width: (CUBE_SIZE * grid.column_size) - 2,
-                          height: (CUBE_SIZE * grid.row_size) - 2)
-      svg_add_points grid, chart, 0, 0
-      chart.to_s
-    end
 
     ##
     # Define shared label style
@@ -56,6 +36,26 @@ module GithubChart
     # Define Style for month labels
 
     SVG_MONTH_STYLE = SVG_SHARED_STYLE.dup.merge('font-size': '10px').freeze
+
+    private
+
+    def render_svg
+      grid = matrix
+      chart = SVGPlot.new(width: (CUBE_SIZE * grid.column_size) + X_PAD,
+                          height: (CUBE_SIZE * grid.row_size) + Y_PAD)
+      svg_add_points grid, chart
+      svg_add_weekdays chart
+      svg_add_months chart
+      chart.to_s
+    end
+
+    def render_svg_square
+      grid = matrix.minor(0, 7, -7, 7)
+      chart = SVGPlot.new(width: (CUBE_SIZE * grid.column_size) - 2,
+                          height: (CUBE_SIZE * grid.row_size) - 2)
+      svg_add_points grid, chart, 0, 0
+      chart.to_s
+    end
 
     def svg_point_style(point)
       {
