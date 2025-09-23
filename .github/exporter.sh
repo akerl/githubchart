@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-URL="https://exporter.akerl.app/metric"
+URL="https://exporter.akerl.org/metric"
 AUTH="Authorization: Bearer $EXPORTER_TOKEN"
 if [[ "$JOB_STATUS" == "success" ]] ; then
     VALUE=1
